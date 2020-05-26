@@ -9,6 +9,20 @@ const usersRouter = require("./routes/users");
 
 const mysql = require("mysql");
 
+// Setup mysql
+
+const db = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "password",
+	database: "",
+});
+
+db.connect((err) => {
+	if (err) throw err;
+	console.log("Mysql connected");
+});
+
 const app = express();
 
 // view engine setup
