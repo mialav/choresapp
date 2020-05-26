@@ -19,8 +19,15 @@ db.connect((err) => {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-	res.render("index", { title: "Express" });
+	let sql = "SELECT * FROM chores";
+	db.query(sql, (err, results) => {
+		if (err) throw err;
+		console.log(results);
+		res.render("index", { choresList: results });
+	});
 });
+
+// Add a chore
 
 router.post("/add", (req, res) => {
 	console.log("body: ", req.body.chore);
@@ -31,7 +38,17 @@ router.post("/add", (req, res) => {
 	db.query(sql, chore, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send(`${task} added`);
+		res.send(`Chore ${task} added `);
+	});
+});
+
+// Delete a chore
+router.get("/delete/:id", (req, res) => {
+	let sql = `DELETE FROM chores WHERE id=${req.params.id}`;
+	db.query(sql, (err, results) => {
+		if (err) throw err;
+		console.log(results);
+		res.send("Chore deleted");
 	});
 });
 

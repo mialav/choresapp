@@ -6,22 +6,7 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-
-const mysql = require("mysql");
-
-// Setup mysql
-
-const db = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "password",
-	database: "",
-});
-
-db.connect((err) => {
-	if (err) throw err;
-	console.log("Mysql connected");
-});
+const hbs = require("hbs");
 
 const app = express();
 
@@ -34,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+hbs.registerPartials(__dirname + "/views/partials");
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

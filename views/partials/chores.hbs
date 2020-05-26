@@ -1,0 +1,9 @@
+<div id="chores-list">
+	{{#each choresList}}
+	<p>{{this.time}}
+	{{this.chore}}
+	<form action="/delete/{{this.id}}" method="get"><button>Poista</button></form>
+	</p>
+	<form action="/edit/{{this.id}}" method="get"><button>Muokkaa</button></form>
+	{{/each}}
+</div>
