@@ -1,2 +1,1 @@
-CREATE DATABASE chores
-USE chores
+CREATE DATABASE chores;

@@ -1,9 +1,15 @@
 <div id="chores-list">
 	{{#each choresList}}
-	<p>{{dateFormat this.time "YYYY-MM-D"}}
-	{{this.chore}}
-	<form action="/delete/{{this.id}}" method="get"><button>Poista</button></form>
-	</p>
-	<form action="/edit/{{this.id}}" method="get"><button>Muokkaa</button></form>
+		<div class="chore">
+			<b>{{dateFormat this.time "YYYY-MM-D"}}</b>:
+		{{this.chore}}
+				<form action="/delete/{{this.id}}" method="get">
+					<button>Poista</button>
+				</form>
+		
+				<form action="/edit/{{this.id}}" method="get">
+					<button>Muokkaa</button>
+				</form>
+		</div>
 	{{/each}}
 </div>
