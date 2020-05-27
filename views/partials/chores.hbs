@@ -1,6 +1,6 @@
 <div id="chores-list">
 	{{#each choresList}}
-	<p>{{this.time}}
+	<p>{{dateFormat this.time "YYYY-MM-D"}}
 	{{this.chore}}
 	<form action="/delete/{{this.id}}" method="get"><button>Poista</button></form>
 	</p>

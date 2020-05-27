@@ -17,7 +17,7 @@ db.connect((err) => {
 	console.log("Mysql connected");
 });
 
-/* GET home page. */
+// Get index
 router.get("/", function (req, res, next) {
 	let sql = "SELECT * FROM chores";
 	db.query(sql, (err, results) => {
@@ -52,7 +52,7 @@ router.get("/delete/:id", (req, res) => {
 	});
 });
 
-// Update chore
+// View to update chore
 router.get("/edit/:id", (req, res) => {
 	let sql = `SELECT * FROM chores WHERE id=${req.params.id}`;
 	db.query(sql, (err, result) => {
