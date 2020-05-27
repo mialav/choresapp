@@ -22,7 +22,7 @@ router.get("/", function (req, res, next) {
 	let sql = "SELECT * FROM chores";
 	db.query(sql, (err, results) => {
 		if (err) throw err;
-		console.log(results);
+		console.log("choresList: ", results);
 		res.render("index", { choresList: results });
 	});
 });
@@ -38,7 +38,7 @@ router.post("/add", (req, res) => {
 	db.query(sql, chore, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send(`Chore ${task} added `);
+		res.redirect("/");
 	});
 });
 
@@ -48,7 +48,28 @@ router.get("/delete/:id", (req, res) => {
 	db.query(sql, (err, results) => {
 		if (err) throw err;
 		console.log(results);
-		res.send("Chore deleted");
+		res.redirect("/");
+	});
+});
+
+// Update chore
+router.get("/edit/:id", (req, res) => {
+	let sql = `SELECT * FROM chores WHERE id=${req.params.id}`;
+	db.query(sql, (err, result) => {
+		if (err) throw err;
+		res.render("edit", { chore: result[0] });
+	});
+});
+
+// QUERY FOR UPDATING
+router.post("/edited/:id", (req, res) => {
+	console.log(req.body.chore);
+	let newChore = req.body.chore;
+	let sql = `UPDATE chores SET chore = '${newChore}' WHERE id=${req.params.id}`;
+	db.query(sql, (err, results) => {
+		if (err) throw err;
+		console.log(results);
+		res.redirect("/");
 	});
 });
 
