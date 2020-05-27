@@ -1,5 +1,7 @@
 <div id="chores-list">
+	<ul>
 	{{#each choresList}}
+	<li>
 		<div class="chore">
 			<b>{{dateFormat this.time "YYYY-MM-D"}}</b>:
 		{{this.chore}}
@@ -11,5 +13,7 @@
 					<button>Muokkaa</button>
 				</form>
 		</div>
+		</li>
 	{{/each}}
+	</ul>
 </div>
